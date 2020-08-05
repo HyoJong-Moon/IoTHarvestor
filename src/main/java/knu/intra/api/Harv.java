@@ -2,6 +2,7 @@ package knu.intra.api;
 
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -9,8 +10,9 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Table
+@Data
 @Builder
-public class Info {
+public class Harv {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long no;
@@ -18,7 +20,8 @@ public class Info {
     private String mqttBroker;
     private String mqttTopic;
     private String clientId;
-    private String datasetId;
+    private String resourceId;
     private String distributionId;
     private String userId;
+    private String harvName;
 }

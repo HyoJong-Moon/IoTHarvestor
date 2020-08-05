@@ -10,13 +10,13 @@ import java.util.UUID;
 
 public class DataSaver implements Runnable {
     private String id;
-    private String datasetId, distributionId, userId;
+    private String resourceId, distributionId, userId;
     private Consumer consumer;
     private Producer producer;
 
-    public DataSaver(String id, String kafkaBroker, String consTopic, String prodTopic, String datasetId, String distributionId, String userId) {
+    public DataSaver(String id, String kafkaBroker, String consTopic, String prodTopic, String resourceId, String distributionId, String userId) {
         this.id = id;
-        this.datasetId = datasetId;
+        this.resourceId = resourceId;
         this.distributionId = distributionId;
         this.userId = userId;
 
@@ -43,7 +43,7 @@ public class DataSaver implements Runnable {
 
     public String transformUMF(JSONObject data) {
         JSONObject bodyObject = new JSONObject();           // UMF body 부분 JSON
-        bodyObject.put("resourceId", datasetId);
+        bodyObject.put("resourceId", resourceId);
         bodyObject.put("distributionId", distributionId);
         bodyObject.put("userId", userId);
         bodyObject.put("data", data.getString("data"));

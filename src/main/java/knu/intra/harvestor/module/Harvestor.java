@@ -14,7 +14,7 @@ public class Harvestor {
 
     public Harvestor(JSONObject parameter) {
         this.id = parameter.getString("id");
-        String datasetId = parameter.getString("datasetId");
+        String resourceId = parameter.getString("resourceId");
         String distributionId = parameter.getString("distributionId");
         String userId = parameter.getString("userId");
         String mqttBoker = parameter.getString("mqttBroker");
@@ -27,7 +27,7 @@ public class Harvestor {
 
         this.mqttSubscriber = new MqttSubscriber(id, mqttBoker, mqttTopic, clientId).setKafkaProducer(kafkaBroker, subTopic);
         this.metaExtractorThread = new Thread(new MetaExtractor(id, kafkaBroker, subTopic, metaTopic));
-        this.dataSaverThread = new Thread(new DataSaver(id, kafkaBroker, subTopic, dstTopic, datasetId, distributionId, userId));
+        this.dataSaverThread = new Thread(new DataSaver(id, kafkaBroker, subTopic, dstTopic, resourceId, distributionId, userId));
     }
 
     public void start() throws MqttException {

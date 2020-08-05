@@ -8,8 +8,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
 
-@Component(value = "HarvestorComponent")
-public class HarvestorComponent {
+@Component(value = "HarvestComponent")
+public class HarvestComponent {
     private @Value("${spring.kafka.broker}") String kafkaBroker;
     private @Value("${spring.kafka.topic.subscriber}") String subTopic;
     private @Value("${spring.kafka.topic.metadata}") String metaTopic;
@@ -17,7 +17,7 @@ public class HarvestorComponent {
 
     private HashMap<String, Harvestor> harvestorList;
 
-    public HarvestorComponent() {
+    public HarvestComponent() {
         this.harvestorList = new HashMap<>();
     }
 
