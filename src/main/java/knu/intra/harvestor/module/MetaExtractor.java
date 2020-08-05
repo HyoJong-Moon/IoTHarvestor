@@ -8,12 +8,12 @@ import org.apache.kafka.clients.consumer.ConsumerRecords;
 import java.time.Duration;
 
 public class MetaExtractor implements Runnable {
-    private String id;
+    private String harvestId;
     private Consumer consumer;
     private Producer producer;
 
-    public MetaExtractor(String id, String kafkaBroker, String consTopic, String prodTopic) {
-        this.id = id;
+    public MetaExtractor(String harvestId, String kafkaBroker, String consTopic, String prodTopic) {
+        this.harvestId = harvestId;
         this.consumer = new Consumer(kafkaBroker, consTopic);
         this.producer = new Producer(kafkaBroker, prodTopic);
 

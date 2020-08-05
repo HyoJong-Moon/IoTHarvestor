@@ -7,13 +7,13 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.json.JSONObject;
 
 public class Harvestor {
-    private String id;
+    private String harvestId;
     private MqttSubscriber mqttSubscriber;
     private Thread metaExtractorThread;
     private Thread dataSaverThread;
 
     public Harvestor(JSONObject parameter) {
-        this.id = parameter.getString("id");
+        this.harvestId = parameter.getString("harvestId");
         String resourceId = parameter.getString("resourceId");
         String distributionId = parameter.getString("distributionId");
         String userId = parameter.getString("userId");
@@ -25,9 +25,9 @@ public class Harvestor {
         String metaTopic = parameter.getString("metaTopic");
         String dstTopic = parameter.getString("dstTopic");
 
-        this.mqttSubscriber = new MqttSubscriber(id, mqttBoker, mqttTopic, clientId).setKafkaProducer(kafkaBroker, subTopic);
-        this.metaExtractorThread = new Thread(new MetaExtractor(id, kafkaBroker, subTopic, metaTopic));
-        this.dataSaverThread = new Thread(new DataSaver(id, kafkaBroker, subTopic, dstTopic, resourceId, distributionId, userId));
+        this.mqttSubscriber = new MqttSubscriber(harvestId, mqttBoker, mqttTopic, clientId).setKafkaProducer(kafkaBroker, subTopic);
+        this.metaExtractorThread = new Thread(new MetaExtractor(harvestId, kafkaBroker, subTopic, metaTopic));
+        this.dataSaverThread = new Thread(new DataSaver(harvestId, kafkaBroker, metaTopic, dstTopic, resourceId, distributionId, userId));
     }
 
     public void start() throws MqttException {

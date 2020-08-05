@@ -34,8 +34,8 @@ public class Producer {
         consumerProp.put("enable.auto.commit", "true");
         consumerProp.put("auto.commit.interval.ms", "1000");
         consumerProp.put("session.timeout.ms", "30000");
-        consumerProp.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
-        consumerProp.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+        consumerProp.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+        consumerProp.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
         return consumerProp;
     }
 }

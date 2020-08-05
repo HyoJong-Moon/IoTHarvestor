@@ -21,20 +21,20 @@ public class HarvestComponent {
         this.harvestorList = new HashMap<>();
     }
 
-    public void startHarvestor(String id, JSONObject parameter) throws MqttException {
+    public void startHarvestor(String harvestId, JSONObject parameter) throws MqttException {
         JSONObject addParam = parameter;
         addParam.put("kafkaBroker", kafkaBroker);
         addParam.put("subTopic", subTopic);
         addParam.put("metaTopic", metaTopic);
         addParam.put("dstTopic", dstTopic);
 
-        harvestorList.put(id, new Harvestor(addParam));
-        Harvestor harvestor = (Harvestor) harvestorList.get(id);
+        harvestorList.put(harvestId, new Harvestor(addParam));
+        Harvestor harvestor = (Harvestor) harvestorList.get(harvestId);
         harvestor.start();
     }
 
-    public void stopHarvestor(String id) throws MqttException {
-        Harvestor harvestor = (Harvestor) harvestorList.remove(id);
+    public void stopHarvestor(String harvestId) throws MqttException {
+        Harvestor harvestor = (Harvestor) harvestorList.remove(harvestId);
         harvestor.stop();
     }
 }

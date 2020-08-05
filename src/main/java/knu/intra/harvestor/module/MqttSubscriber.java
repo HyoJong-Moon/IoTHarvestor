@@ -14,13 +14,13 @@ public class MqttSubscriber implements MqttCallback {
     private MemoryPersistence memoryPersistence;
     private Producer producer;
 
-    private String id;
+    private String harvestId;
     private String mqttBroker;
     private String mqttTopic;
     private String clientId;
 
-    public MqttSubscriber(String id, String mqttBroker, String mqttTopic, String clientId) {
-        this.id = id;
+    public MqttSubscriber(String harvestId, String mqttBroker, String mqttTopic, String clientId) {
+        this.harvestId = harvestId;
         this.mqttBroker = mqttBroker;
         this.mqttTopic = mqttTopic;
         this.clientId = clientId;
@@ -67,7 +67,7 @@ public class MqttSubscriber implements MqttCallback {
         String message = new String(mqttMessage.getPayload());
         iotData = new JSONObject(message);
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("id", id);
+        jsonObject.put("harvestId", harvestId);
         jsonObject.put("data", iotData);
         producer.produce(String.valueOf(jsonObject));
     }

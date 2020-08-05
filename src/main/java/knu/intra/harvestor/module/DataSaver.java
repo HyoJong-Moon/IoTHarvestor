@@ -9,13 +9,13 @@ import org.json.JSONObject;
 import java.util.UUID;
 
 public class DataSaver implements Runnable {
-    private String id;
+    private String harvestId;
     private String resourceId, distributionId, userId;
     private Consumer consumer;
     private Producer producer;
 
-    public DataSaver(String id, String kafkaBroker, String consTopic, String prodTopic, String resourceId, String distributionId, String userId) {
-        this.id = id;
+    public DataSaver(String harvestId, String kafkaBroker, String consTopic, String prodTopic, String resourceId, String distributionId, String userId) {
+        this.harvestId = harvestId;
         this.resourceId = resourceId;
         this.distributionId = distributionId;
         this.userId = userId;

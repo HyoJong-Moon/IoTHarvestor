@@ -92,6 +92,7 @@ public class HarvController {
         return result;
     }
 
+    @PostMapping("/start")
     public Map startHarv(@RequestParam(value="harvestId") String harvestId) {
         Map<String, Object> result = new HashMap<>();
         Harv harv = harvRepository.findByHarvestId(harvestId);
@@ -116,6 +117,7 @@ public class HarvController {
         return result;
     }
 
+    @PostMapping("/stop")
     public Map stopHarv(@RequestParam(value="harvestId") String harvestId) {
         Map<String, Object> result = new HashMap<>();
         try {
