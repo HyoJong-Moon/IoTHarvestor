@@ -11,8 +11,8 @@ import javax.persistence.*;
 public class Harv {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long no;
-    private String id;
+    private Long idx;
+    private String harvestId;
     private String mqttBroker;
     private String mqttTopic;
     private String clientId;
@@ -20,10 +20,16 @@ public class Harv {
     private String distributionId;
     private String userId;
     private String harvName;
+    private String createTime;
+    private String startTime;
+    private String endTime;
+    private boolean state;
 
     @Builder
-    public Harv(String id, String mqttBroker, String mqttTopic, String clientId, String resourceId, String distributionId, String userId, String harvName) {
-        this.id = id;
+    public Harv(String harvestId, String mqttBroker, String mqttTopic, String clientId,
+                String resourceId, String distributionId, String userId, String harvName,
+                String createTime, String startTime, String endTime, boolean state) {
+        this.harvestId = harvestId;
         this.mqttBroker = mqttBroker;
         this.mqttTopic = mqttTopic;
         this.clientId = clientId;
@@ -31,5 +37,9 @@ public class Harv {
         this.distributionId = distributionId;
         this.userId = userId;
         this.harvName = harvName;
+        this.createTime = createTime;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.state = state;
     }
 }
