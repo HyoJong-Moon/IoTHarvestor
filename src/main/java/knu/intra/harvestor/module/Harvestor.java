@@ -1,11 +1,11 @@
 package knu.intra.harvestor.module;
 
-import knu.intra.harvestor.module.DataSaver;
-import knu.intra.harvestor.module.MetaExtractor;
-import knu.intra.harvestor.module.MqttSubscriber;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.json.JSONObject;
 
+/**
+ * IoT
+ */
 public class Harvestor {
     private String harvestId;
     private MqttSubscriber mqttSubscriber;

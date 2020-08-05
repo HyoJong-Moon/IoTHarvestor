@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * 하베스터를 생성하고 관리할 수 있는 API Controller
+ */
 @RestController
 @RequestMapping(value="/iot")
 public class HarvController {
