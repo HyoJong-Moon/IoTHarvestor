@@ -11,7 +11,7 @@ import java.util.UUID;
 /**
  * IoT 데이터를 최종적으로 저장하기 위해 보내는 클래스
  * 현재는 UMF 형태로 우리 서버에 전송하는 형태
- * 이부분은 추가적인 작업 필요
+ * 카프카를 통해 데이터를 지속적으로 수집해야하는 데, 다른 모듈과 동시에 작동해야 하기 때문에 쓰레드로 구현
  */
 public class DataSaver implements Runnable {
     private String harvestId;
@@ -69,6 +69,6 @@ public class DataSaver implements Runnable {
         umfObject.put("timestamp", System.currentTimeMillis());
         umfObject.put("body", bodyObject);
 
-        return String.valueOf(umfObject);
+        return umfObject.toString();
     }
 }

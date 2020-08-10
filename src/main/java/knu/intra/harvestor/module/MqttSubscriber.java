@@ -63,13 +63,11 @@ public class MqttSubscriber implements MqttCallback {
 
     @Override
     public void messageArrived(String s, MqttMessage mqttMessage) throws Exception {
-        JSONObject iotData;
         String message = new String(mqttMessage.getPayload());
-        iotData = new JSONObject(message);
-        JSONObject jsonObject = new JSONObject();
-        jsonObject.put("harvestId", harvestId);
-        jsonObject.put("data", iotData);
-        producer.produce(String.valueOf(jsonObject));
+        JSONObject subData = new JSONObject();
+        subData.put("harvestId", harvestId);
+        subData.put("data", new JSONObject(message));
+        producer.produce(subData.toString());
     }
 
     @Override

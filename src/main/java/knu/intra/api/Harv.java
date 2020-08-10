@@ -14,10 +14,7 @@ import javax.persistence.*;
 @Table
 @Data
 public class Harv {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long idx;                   // index
-    private String harvestId;           // 서버 내에서 하베스터를 식별하기 위한 ID
+    private @Id String harvestId;           // 서버 내에서 하베스터를 식별하기 위한 ID
     private String mqttBroker;          // MQTT 프로토콜 주소
     private String mqttTopic;           // Subscribe 할 MQTT 토픽 이름
     private String clientId;            // MQTT에서 사용될 Client ID

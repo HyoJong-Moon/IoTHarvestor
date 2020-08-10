@@ -4,7 +4,8 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.json.JSONObject;
 
 /**
- * IoT
+ * IoT 하베스터 객체
+ * MQTT Subscriber, 메타데이터 추출, 데이터 저장하는 객체 한번에 실행
  */
 public class Harvestor {
     private String harvestId;
@@ -40,5 +41,9 @@ public class Harvestor {
         mqttSubscriber.disConnect();
         metaExtractorThread.interrupt();
         dataSaverThread.interrupt();
+    }
+
+    public void delete() throws MqttException {
+        mqttSubscriber.terminate();
     }
 }
