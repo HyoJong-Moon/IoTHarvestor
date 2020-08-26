@@ -10,7 +10,6 @@ import org.json.JSONObject;
 public class Harvestor {
     private String harvestId;
     private MqttSubscriber mqttSubscriber;
-    private Thread metaExtractorThread;
     private Thread dataSaverThread;
 
     public Harvestor(JSONObject parameter) {
@@ -27,19 +26,16 @@ public class Harvestor {
         String dstTopic = parameter.getString("dstTopic");
 
         this.mqttSubscriber = new MqttSubscriber(harvestId, mqttBoker, mqttTopic, clientId).setKafkaProducer(kafkaBroker, subTopic);
-        this.metaExtractorThread = new Thread(new MetaExtractor(harvestId, kafkaBroker, subTopic, metaTopic));
         this.dataSaverThread = new Thread(new DataSaver(harvestId, kafkaBroker, metaTopic, dstTopic, resourceId, distributionId, userId));
     }
 
     public void start() throws MqttException {
         mqttSubscriber.connect();
-        metaExtractorThread.start();
         dataSaverThread.start();
     }
 
     public void stop() throws MqttException {
         mqttSubscriber.disConnect();
-        metaExtractorThread.interrupt();
         dataSaverThread.interrupt();
     }
 
