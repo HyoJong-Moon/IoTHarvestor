@@ -10,8 +10,7 @@ Spring Boot를 사용하여 개발하여, API를 통해 모듈을 동작시킨�
    
 IoT Harvestor의 모듈은 크게 MQTT Subscriber, Meta Extractor, Data Saver 3가지로 구성되어 있다.
 MQTT 프로토콜은 Pub/Sub 구조이기 때문에, 데이터를 가져오기 위해 MQTT Subscriber를 통해 IoT 데이터가 들어오는 MQTT 토픽을 Subscribe 한다.
-이렇게 수집된 데이터는 Meta Extractor를 통해 IoT 데이터에 대한 메타 데이터에 추출을 진행하게 되는데 현재는 개발중에 있다.
-마지막으로 IoT 데이터를 다른 곳으로 가져갈 수 있도록 Data Saver로 카프카로 전송하게 된다.
+그리고 subscribe 하여 전송된 IoT 데이터를 다른 곳으로 가져갈 수 있도록 Data Saver로 카프카에 전송하게 된다.
    
    
 ### 환경 설정
